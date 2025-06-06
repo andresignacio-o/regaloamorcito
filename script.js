@@ -29,7 +29,7 @@ const gameData = {
         },
         {
             id: 3,
-            question: "¿Cuánto tiempo llevamos (a la fecha 05.06.25)?",
+            question: "¿Cuando fue nuestro primer besito de la vida?",
             answers: [
                 "17 octubre 2023",
                 "17 noviembre 2023",
@@ -43,7 +43,7 @@ const gameData = {
             id: 4,
             question: "Aquí se acaba la primera parte del juego bby, ya se viene la procsima...",
             answers: [
-                "Yei"
+                "Yeii"
             ],
             correct: 0, // Índice de la respuesta correcta (empezando en 0)
             coupon: "Mi amorcito para siempre princesa 💕 y desayuno Piaf (Ya lo canjeaste uwu)"

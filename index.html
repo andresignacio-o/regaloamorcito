@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💕 Quiz del Amor - Pixel Edition 💕</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Pantalla de inicio -->
+    <div id="startScreen" class="screen active">
+        <div class="container">
+            <h1 class="game-title">💕 QUIZ DEL AMOR 💕</h1>
+            <div class="pixel-heart">❤️</div>
+            <p class="subtitle">¿Qué tanto conoces nuestra historia?</p>
+            <button class="pixel-btn start-btn" onclick="startGame()">EMPEZAR JUEGO</button>
+            <button class="pixel-btn" onclick="showCoupons()">VER CUPONES</button>
+        </div>
+    </div>
+
+    <!-- Pantalla del juego -->
+    <div id="gameScreen" class="screen">
+        <div class="container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="question-counter">
+                Pregunta <span id="currentQuestion">1</span> de <span id="totalQuestions">3</span>
+            </div>
+            
+            <div class="question-container">
+                <h2 id="questionText" class="question-text"></h2>
+                <div id="answersContainer" class="answers-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pantalla de respuesta correcta -->
+    <div id="correctScreen" class="screen">
+        <div class="container">
+            <h2 class="success-message">¡CORRECTO! 💖</h2>
+            <div class="coupon-unlock">
+                <div class="coupon-animation">
+                    <div id="unlockedCoupon" class="coupon-card">
+                        <div class="coupon-header">🎟️ CUPÓN DESBLOQUEADO</div>
+                        <div class="coupon-content"></div>
+                    </div>
+                </div>
+            </div>
+            <button class="pixel-btn" onclick="nextQuestion()">SIGUIENTE</button>
+        </div>
+    </div>
+
+    <!-- Pantalla de respuesta incorrecta -->
+    <div id="incorrectScreen" class="screen">
+        <div class="container">
+            <h2 class="error-message">¡Oops! Te amo igual 😘</h2>
+            <div class="pixel-heart-broken">💔</div>
+            <p class="encouragement">¡Pero no te preocupes, sigamos jugando!</p>
+            <button class="pixel-btn" onclick="nextQuestion()">CONTINUAR</button>
+        </div>
+    </div>
+
+    <!-- Pantalla de cupones -->
+    <div id="couponsScreen" class="screen">
+        <div class="container">
+            <h2 class="screen-title">🎟️ TUS CUPONES 🎟️</h2>
+            <div id="couponsGallery" class="coupons-gallery"></div>
+            <button class="pixel-btn" onclick="goHome()">VOLVER AL INICIO</button>
+        </div>
+    </div>
+
+    <!-- Pantalla final -->
+    <div id="endScreen" class="screen">
+        <div class="container">
+            <h2 class="game-over">¡JUEGO COMPLETADO! 🎉</h2>
+            <div class="final-stats">
+                <p>Cupones desbloqueados: <span id="totalCoupons">0</span></p>
+                <div class="pixel-celebration">🎊✨💕✨🎊</div>
+            </div>
+            <button class="pixel-btn" onclick="showCoupons()">VER CUPONES</button>
+            <button class="pixel-btn" onclick="restartGame()">JUGAR DE NUEVO</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

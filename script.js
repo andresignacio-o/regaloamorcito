@@ -9,8 +9,8 @@ const gameData = {
             id: 1,
             question: "¿Quién tiene más olor a patas y se tira peos?",
             answers: [
-                "Yo",
-                "Tú"
+                "Marrano",
+                "Marrana"
             ],
             correct: 1, // Índice de la respuesta correcta (empezando en 0)
             coupon: "Date en el cine: Lilo & Stitch"

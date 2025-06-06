@@ -7,39 +7,46 @@ const gameData = {
     questions: [
         {
             id: 1,
-            question: "¿Cuál fue nuestro primer lugar de cita oficial?",
+            question: "¿Quién tiene más olor a patas y se tira peos?",
             answers: [
-                "El parque central",
-                "El cine del centro comercial", 
-                "La cafetería de la esquina",
-                "El restaurante italiano"
+                "Yo",
+                "Tú"
             ],
             correct: 1, // Índice de la respuesta correcta (empezando en 0)
-            coupon: "Vale por desayuno en la cama 🍳"
+            coupon: "Date en el cine: Lilo & Stitch"
         },
         {
             id: 2,
-            question: "¿Cuál es mi comida favorita que tú cocinas?",
+            question: "¿Dónde fue nuestra primera cita eh marrana?",
             answers: [
-                "Pasta con salsa boloñesa",
-                "Pollo al horno con verduras",
-                "Tacos de carnitas",
-                "Pizza casera"
+                "Cine (Barbie)",
+                "Cacao Much",
+                "Johnny Rockets",
+                "Parque O'Higgins"
             ],
             correct: 2,
-            coupon: "Un masaje de 20 minutos 💆‍♀️"
+            coupon: "Cita en Pub (Yo invito obviamente)🥂"
         },
         {
             id: 3,
-            question: "¿Qué película vimos en nuestra primera noche de películas?",
+            question: "¿Cuánto tiempo llevamos (a la fecha 05.06.25)?",
             answers: [
-                "Una comedia romántica",
-                "Una película de acción",
-                "Una película de terror",
-                "Una película de Disney"
+                "17 octubre 2023",
+                "17 noviembre 2023",
+                "14 de noviembre 2023",
+                "14 octubre 2023"
             ],
             correct: 0,
-            coupon: "Una noche de peli y manta 🍿"
+            coupon: "Banano Running rosadito 🏃‍♀️💖"
+        },
+        {
+            id: 4,
+            question: "Aquí se acaba la primera parte del juego bby, ya se viene la procsima...",
+            answers: [
+                "Yei"
+            ],
+            correct: 0, // Índice de la respuesta correcta (empezando en 0)
+            coupon: "Mi amorcito para siempre princesa 💕"
         }
     ]
 };
@@ -50,7 +57,9 @@ const gameData = {
 
 let currentQuestionIndex = 0;
 let unlockedCoupons = [];
-let gameState = 'start'; // start, playing, correct, incorrect, coupons, end
+let gameState = 'welcome'; // welcome, start, playing, correct, incorrect, coupons, end
+let backgroundMusic = null;
+let musicStarted = false;
 
 // ============================================
 // FUNCIONES DE NAVEGACIÓN ENTRE PANTALLAS
@@ -70,6 +79,15 @@ function showScreen(screenId) {
     }
 }
 
+function startWelcome() {
+    // Inicializar y reproducir música de fondo
+    initBackgroundMusic();
+    
+    // Ir a la pantalla de inicio del juego
+    gameState = 'start';
+    showScreen('startScreen');
+}
+
 function startGame() {
     currentQuestionIndex = 0;
     unlockedCoupons = [];
@@ -82,6 +100,11 @@ function startGame() {
 function goHome() {
     gameState = 'start';
     showScreen('startScreen');
+}
+
+function goToWelcome() {
+    gameState = 'welcome';
+    showScreen('welcomeScreen');
 }
 
 function restartGame() {
@@ -248,6 +271,59 @@ function createSparkles() {
 }
 
 // ============================================
+// SISTEMA DE MÚSICA DE FONDO
+// ============================================
+
+function initBackgroundMusic() {
+    if (!musicStarted) {
+        backgroundMusic = document.getElementById('backgroundMusic');
+        
+        if (backgroundMusic) {
+            // Configurar el volumen
+            backgroundMusic.volume = 0.3; // Volumen al 30% para que no sea muy fuerte
+            
+            // Intentar reproducir la música
+            const playPromise = backgroundMusic.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    console.log('🎵 Música de fondo iniciada exitosamente');
+                    musicStarted = true;
+                }).catch(error => {
+                    console.log('⚠️ No se pudo reproducir la música automáticamente:', error);
+                    // Mostrar un mensaje al usuario si es necesario
+                });
+            }
+            
+            // Asegurarse de que la música se mantenga en loop
+            backgroundMusic.addEventListener('ended', function() {
+                this.currentTime = 0;
+                this.play();
+            });
+            
+            // Manejar errores de reproducción
+            backgroundMusic.addEventListener('error', function(e) {
+                console.log('❌ Error al cargar la música:', e);
+            });
+        }
+    }
+}
+
+function toggleMusic() {
+    if (backgroundMusic) {
+        const musicBtn = document.getElementById('musicBtn');
+        
+        if (backgroundMusic.paused) {
+            backgroundMusic.play();
+            if (musicBtn) musicBtn.textContent = '🎵 PAUSAR MÚSICA';
+        } else {
+            backgroundMusic.pause();
+            if (musicBtn) musicBtn.textContent = '🎵 REANUDAR MÚSICA';
+        }
+    }
+}
+
+// ============================================
 // EFECTOS DE SONIDO (OPCIONAL)
 // ============================================
 
@@ -323,15 +399,15 @@ function loadProgress() {
 // INICIALIZACIÓN DEL JUEGO
 // ============================================
 
-// Cargar el juego cuando la página esté lista
+// Cargar el juego cuando la página esté ready
 document.addEventListener('DOMContentLoaded', function() {
     console.log('💕 Quiz del Amor cargado correctamente! 💕');
     
     // Cargar progreso guardado (opcional)
     // loadProgress();
     
-    // Mostrar pantalla de inicio
-    showScreen('startScreen');
+    // Mostrar pantalla de bienvenida
+    showScreen('welcomeScreen');
     
     // Añadir eventos de teclado para mejor experiencia
     document.addEventListener('keydown', function(event) {
@@ -350,6 +426,11 @@ document.addEventListener('DOMContentLoaded', function() {
             if (event.key === 'Enter' || event.key === ' ') {
                 nextQuestion();
             }
+        } else if (gameState === 'welcome') {
+            // Comenzar con Enter o Espacio
+            if (event.key === 'Enter' || event.key === ' ') {
+                startWelcome();
+            }
         }
     });
 });
@@ -361,28 +442,34 @@ document.addEventListener('DOMContentLoaded', function() {
 /*
 GUÍA PARA PERSONALIZAR EL JUEGO:
 
-1. AÑADIR NUEVAS PREGUNTAS:
+1. PERSONALIZAR LA CARTA DE BIENVENIDA:
+   - Edita el contenido de la carta en index.html
+   - Busca la sección con clase "letter-content"
+   - Cambia "[Tu nombre aquí]" por tu nombre real
+
+2. AÑADIR NUEVAS PREGUNTAS:
    - Edita el array 'gameData.questions'
    - Cada pregunta debe tener: id, question, answers, correct, coupon
    - El índice 'correct' empieza en 0
 
-2. CAMBIAR COLORES:
+3. CAMBIAR LA MÚSICA:
+   - Reemplaza "Floating Cat.mp3" por tu archivo de música
+   - Asegúrate de que esté en la misma carpeta
+   - Formatos soportados: MP3, WAV, OGG
+
+4. CAMBIAR COLORES:
    - Edita las variables CSS en style.css
    - Busca los gradientes y colores neón para el tema
 
-3. AÑADIR SONIDOS:
-   - Reemplaza las funciones playSuccessSound() y playErrorSound()
-   - Puedes usar archivos MP3 o la Web Audio API
-
-4. MODIFICAR CUPONES:
+5. MODIFICAR CUPONES:
    - Cambia el texto en la propiedad 'coupon' de cada pregunta
    - Puedes usar emojis para hacerlos más divertidos
 
-5. AJUSTAR DIFICULTAD:
-   - Cambia el número de opciones de respuesta
-   - Modifica el texto de las preguntas
+6. AJUSTAR VOLUMEN DE MÚSICA:
+   - Modifica backgroundMusic.volume en initBackgroundMusic()
+   - Valores de 0.0 (silencio) a 1.0 (máximo)
 
-6. GUARDAR PROGRESO:
+7. GUARDAR PROGRESO:
    - Descomenta las líneas de saveProgress() y loadProgress()
    - El progreso se guardará automáticamente en el navegador
 */

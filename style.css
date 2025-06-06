@@ -46,16 +46,125 @@ body {
     display: block;
 }
 
+/* Pantalla de bienvenida */
+.welcome-title {
+    font-size: 2.2rem;
+    color: #ffffff;
+    text-shadow: 
+        2px 2px 0px #ff69b4,
+        4px 4px 0px #ff1493,
+        0 0 15px #ff69b4;
+    margin-bottom: 2rem;
+    animation: gentlePulse 3s infinite;
+    font-weight: bold;
+}
+
+@keyframes gentlePulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.02); opacity: 0.9; }
+}
+
+/* Carta de amor */
+.love-letter {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    border: 3px solid #ff69b4;
+    border-radius: 15px;
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 600px;
+    backdrop-filter: blur(10px);
+    box-shadow: 
+        0 0 30px rgba(255, 105, 180, 0.3),
+        inset 0 0 20px rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.love-letter::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #ff1493, #00ffff, #ff1493, #00ffff);
+    background-size: 400% 400%;
+    animation: borderGlow 4s ease infinite;
+    border-radius: 15px;
+    z-index: -1;
+}
+
+@keyframes borderGlow {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.letter-content {
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: #ffffff;
+    text-align: left;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+    position: relative;
+    z-index: 1;
+}
+
+.letter-content p {
+    margin-bottom: 0.5rem;
+}
+
+.signature {
+    text-align: right;
+    font-style: italic;
+    color: #ffffff;
+    text-shadow: 
+        1px 1px 0px #ff69b4,
+        0 0 8px #ff69b4;
+    margin-top: 1rem !important;
+}
+
+.welcome-btn {
+    font-size: 1rem;
+    padding: 20px 40px;
+    background: linear-gradient(45deg, #ff1493, #ff69b4, #ff1493);
+    background-size: 200% 200%;
+    animation: welcomeBtnGlow 2s ease infinite;
+    border: 4px solid #ffffff;
+    box-shadow: 
+        0 0 20px rgba(255, 20, 147, 0.6),
+        inset 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+@keyframes welcomeBtnGlow {
+    0%, 100% { 
+        background-position: 0% 50%;
+        transform: scale(1);
+    }
+    50% { 
+        background-position: 100% 50%;
+        transform: scale(1.05);
+    }
+}
+
+.welcome-btn:hover {
+    background: linear-gradient(45deg, #00ff00, #32cd32, #00ff00);
+    box-shadow: 
+        0 0 30px rgba(0, 255, 0, 0.8),
+        inset 0 0 30px rgba(255, 255, 255, 0.3);
+    transform: translateY(-3px) scale(1.05);
+}
+
 /* Título del juego */
 .game-title {
     font-size: 2.5rem;
-    color: #ff1493;
+    color: #ffffff;
     text-shadow: 
-        0 0 10px #ff1493,
-        0 0 20px #ff1493,
-        0 0 30px #ff1493;
+        2px 2px 0px #ff1493,
+        4px 4px 0px #8b0a2b,
+        0 0 20px #ff1493;
     margin-bottom: 2rem;
     animation: pulse 2s infinite;
+    font-weight: bold;
 }
 
 @keyframes pulse {
@@ -89,9 +198,12 @@ body {
 /* Subtítulo */
 .subtitle {
     font-size: 1rem;
-    color: #00ffff;
+    color: #ffffff;
+    text-shadow: 
+        1px 1px 0px #00ffff,
+        2px 2px 0px #008b8b,
+        0 0 10px #00ffff;
     margin-bottom: 3rem;
-    text-shadow: 0 0 10px #00ffff;
 }
 
 /* Botones pixelados */
@@ -125,6 +237,16 @@ body {
     box-shadow: 
         0 0 10px rgba(0, 255, 0, 0.5),
         inset 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+/* Botón de música */
+.music-btn {
+    background: linear-gradient(45deg, #9b59b6, #8e44ad);
+    font-size: 0.7rem;
+}
+
+.music-btn:hover {
+    background: linear-gradient(45deg, #e74c3c, #c0392b);
 }
 
 /* Barra de progreso */
@@ -165,9 +287,11 @@ body {
 /* Contador de preguntas */
 .question-counter {
     font-size: 0.9rem;
-    color: #00ffff;
+    color: #ffffff;
+    text-shadow: 
+        1px 1px 0px #00ffff,
+        0 0 8px #00ffff;
     margin-bottom: 2rem;
-    text-shadow: 0 0 10px #00ffff;
 }
 
 /* Contenedor de preguntas */
@@ -181,10 +305,12 @@ body {
     color: #ffffff;
     margin-bottom: 2rem;
     padding: 20px;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.8);
     border: 3px solid #00ffff;
     border-radius: 10px;
-    text-shadow: 0 0 10px #00ffff;
+    text-shadow: 
+        1px 1px 0px #000000,
+        0 0 8px #00ffff;
     line-height: 1.6;
 }
 
@@ -225,10 +351,14 @@ body {
 /* Mensajes de éxito y error */
 .success-message {
     font-size: 2rem;
-    color: #00ff00;
-    text-shadow: 0 0 20px #00ff00;
+    color: #ffffff;
+    text-shadow: 
+        2px 2px 0px #00ff00,
+        4px 4px 0px #008000,
+        0 0 15px #00ff00;
     margin-bottom: 2rem;
     animation: bounce 1s infinite;
+    font-weight: bold;
 }
 
 @keyframes bounce {
@@ -238,16 +368,22 @@ body {
 
 .error-message {
     font-size: 1.8rem;
-    color: #ff6b6b;
-    text-shadow: 0 0 20px #ff6b6b;
+    color: #ffffff;
+    text-shadow: 
+        2px 2px 0px #ff6b6b,
+        4px 4px 0px #cc5555,
+        0 0 15px #ff6b6b;
     margin-bottom: 2rem;
+    font-weight: bold;
 }
 
 .encouragement {
     font-size: 0.9rem;
-    color: #ffff00;
+    color: #ffffff;
+    text-shadow: 
+        1px 1px 0px #ffff00,
+        0 0 8px #ffff00;
     margin-bottom: 2rem;
-    text-shadow: 0 0 10px #ffff00;
 }
 
 /* Animación del cupón */
@@ -352,25 +488,58 @@ body {
 /* Títulos de pantalla */
 .screen-title {
     font-size: 2rem;
-    color: #00ffff;
-    text-shadow: 0 0 20px #00ffff;
+    color: #ffffff;
+    text-shadow: 
+        2px 2px 0px #00ffff,
+        4px 4px 0px #008b8b,
+        0 0 15px #00ffff;
     margin-bottom: 2rem;
+    font-weight: bold;
 }
 
 .game-over {
     font-size: 2.5rem;
-    color: #00ff00;
-    text-shadow: 0 0 30px #00ff00;
+    color: #ffffff;
+    text-shadow: 
+        2px 2px 0px #00ff00,
+        4px 4px 0px #008000,
+        0 0 20px #00ff00;
     margin-bottom: 2rem;
     animation: rainbow 3s infinite;
+    font-weight: bold;
 }
 
 @keyframes rainbow {
-    0% { color: #ff1493; text-shadow: 0 0 30px #ff1493; }
-    25% { color: #00ffff; text-shadow: 0 0 30px #00ffff; }
-    50% { color: #00ff00; text-shadow: 0 0 30px #00ff00; }
-    75% { color: #ffff00; text-shadow: 0 0 30px #ffff00; }
-    100% { color: #ff1493; text-shadow: 0 0 30px #ff1493; }
+    0% { 
+        text-shadow: 
+            2px 2px 0px #ff1493,
+            4px 4px 0px #8b0a2b,
+            0 0 20px #ff1493;
+    }
+    25% { 
+        text-shadow: 
+            2px 2px 0px #00ffff,
+            4px 4px 0px #008b8b,
+            0 0 20px #00ffff;
+    }
+    50% { 
+        text-shadow: 
+            2px 2px 0px #00ff00,
+            4px 4px 0px #008000,
+            0 0 20px #00ff00;
+    }
+    75% { 
+        text-shadow: 
+            2px 2px 0px #ffff00,
+            4px 4px 0px #cccc00,
+            0 0 20px #ffff00;
+    }
+    100% { 
+        text-shadow: 
+            2px 2px 0px #ff1493,
+            4px 4px 0px #8b0a2b,
+            0 0 20px #ff1493;
+    }
 }
 
 /* Estadísticas finales */

@@ -3,21 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>💕 Quiz del Amor - Pixel Edition 💕</title>
+    <title>💕 Quiz del Amor - Marrano Edition 💕</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Audio de fondo -->
+    <audio id="backgroundMusic" loop preload="auto">
+        <source src="Floating Cat.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+
+    <!-- Pantalla de bienvenida con carta -->
+    <div id="welcomeScreen" class="screen active">
+        <div class="container">
+            <h1 class="welcome-title">💌 Para Ti, Mi Amor 💌</h1>
+            <div class="love-letter">
+                <div class="letter-content">
+                    <p>Hola mi bonita ❤️,</p>
+                    <br>
+                    <p>Tenia muchas ganas de hacerte algo muito bonito, espero que esto te guste mucho mucho.</p>
+                    <br>
+                    <p>Solo decirte que eres una nena muy especial amor, poder estar a tu lado de nuevo es un sueño bby. Te prometo que te volvería a elegir una y mil veces más. Que privilegio poder ver esos ojitos brillantes de nuevo, esos ojitos que iluminan la vida aunque parezca que afuera este nublado.</p>
+                    <br>
+                    <p> Es un privilegio poder rodearte con mis brazos bby y poder darte seguridad ante las cositas de la vida y poder ser tu apoyo, anhelo seguir construyendo esta historia que se nos viene bonita, vamos con todo amorcito.</p>
+                    <br>
+                    <p>¿Lista para jugar?</p>
+                    <br>
+                    <p class="signature">Con todo mi amor,<br>Tu marrano ❤️</p>
+                </div>
+            </div>
+            <button class="pixel-btn welcome-btn" onclick="startWelcome()">❤️ COMENZAR ❤️</button>
+        </div>
+    </div>
+
     <!-- Pantalla de inicio -->
-    <div id="startScreen" class="screen active">
+    <div id="startScreen" class="screen">
         <div class="container">
             <h1 class="game-title">💕 QUIZ DEL AMOR 💕</h1>
             <div class="pixel-heart">❤️</div>
             <p class="subtitle">¿Qué tanto conoces nuestra historia?</p>
             <button class="pixel-btn start-btn" onclick="startGame()">EMPEZAR JUEGO</button>
             <button class="pixel-btn" onclick="showCoupons()">VER CUPONES</button>
+            <button class="pixel-btn music-btn" onclick="toggleMusic()" id="musicBtn">🎵 PAUSAR MÚSICA</button>
         </div>
     </div>
 
@@ -57,9 +87,9 @@
     <!-- Pantalla de respuesta incorrecta -->
     <div id="incorrectScreen" class="screen">
         <div class="container">
-            <h2 class="error-message">¡Oops! Te amo igual 😘</h2>
+            <h2 class="error-message">Komo, te equivocaste 😔</h2>
             <div class="pixel-heart-broken">💔</div>
-            <p class="encouragement">¡Pero no te preocupes, sigamos jugando!</p>
+            <p class="encouragement">Te voy a dar otra vida, grrr (Juega de nuevo para ganar este cupón)</p>
             <button class="pixel-btn" onclick="nextQuestion()">CONTINUAR</button>
         </div>
     </div>

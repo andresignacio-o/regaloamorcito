@@ -46,7 +46,7 @@ const gameData = {
                 "Yei"
             ],
             correct: 0, // Índice de la respuesta correcta (empezando en 0)
-            coupon: "Mi amorcito para siempre princesa 💕"
+            coupon: "Mi amorcito para siempre princesa 💕 y desayuno Piaf (Ya lo canjeaste uwu)"
         }
     ]
 };
